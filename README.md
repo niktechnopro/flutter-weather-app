@@ -1,10 +1,10 @@
 # flutter-weather-app
 
-## simple weather app built with Flutter - from idea to submitting to Google Play
+## simple weather app built with Flutter - from idea to submitting to Google Play (good starting point for further development)
 
-In the project directory, run to launch the project:
+### to make API calls to retrieve the weather info, the app needs API KEY from `https://openweathermap.org/`, and it needs to be placed into: `lib/helpers/secrets.dart`
 
-### `flutter run`, to run in development mode
+### to launch the project: `flutter run`, to run in development mode
 
 ## the libraries used in project:
 * splash_screen_view: ^3.0.0 - splash screen
