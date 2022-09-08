@@ -2,7 +2,7 @@
 
 ## simple weather app built with Flutter (good starting point for further development)
 
-## see it on Google Play Store: `https://play.google.com/store/apps/details?id=com.awesome.w_nik_app`
+## see it on Google Play Store: https://play.google.com/store/apps/details?id=com.awesome.w_nik_app
 
 ### to make API calls to retrieve the weather info, the app needs API KEY from `https://openweathermap.org/`, and it needs to be placed into: `lib/helpers/secrets.dart`
 
