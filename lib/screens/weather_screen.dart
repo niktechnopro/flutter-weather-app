@@ -123,7 +123,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
               padding: EdgeInsets.only(top: 10.0),
               child: SizedBox(
                   width: 350,
-                  height: 350,
+                  height: 400,
                   child: Stack(
                     children: <Widget>[
                       Container(
@@ -133,13 +133,13 @@ class _WeatherScreenState extends State<WeatherScreen> {
                         ),
                       ),
                       AnimatedPositioned(
-                          height: selected ? 350.0 : 0.0,
-                          duration: const Duration(milliseconds: 600),
+                          height: selected ? 400.0 : 0.0,
+                          duration: const Duration(milliseconds: 750),
                           curve: Curves.fastOutSlowIn,
                           child: Image.network(
                             result.icon,
                             fit: BoxFit.cover,
-                            color: const Color.fromRGBO(255, 255, 255, 0.6),
+                            color: const Color.fromRGBO(255, 255, 255, 0.65),
                             colorBlendMode: BlendMode.modulate,
                             width: 350,
                           )),
@@ -162,7 +162,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                                                 overflow: TextOverflow.ellipsis,
                                                 maxLines: 2,
                                                 style: TextStyle(
-                                                    fontSize: 20,
+                                                    fontSize: 18,
                                                     color: Colors.black)))),
                                     Center(
                                         child: Padding(
@@ -174,7 +174,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                                                 overflow: TextOverflow.ellipsis,
                                                 maxLines: 1,
                                                 style: TextStyle(
-                                                    fontSize: 20,
+                                                    fontSize: 18,
                                                     color: Colors.black)))),
                                     weatherRow(
                                         "Description: ", result.description),
@@ -188,17 +188,21 @@ class _WeatherScreenState extends State<WeatherScreen> {
                                         "${result.humidity.toString()} %"),
                                     // weatherRow("icon: ", result.icon)
                                   ])
-                                : Text(
-                                    isFirstLoad
-                                        ? "Enter Location/Address in search field above"
-                                        : isGeoCoderError
-                                            ? geoCoderMessage
-                                            : "Loading...",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        fontSize: 25,
-                                        color: Colors.black,
-                                        fontStyle: FontStyle.italic))),
+                                : Padding(
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: 2.0,
+                                    ),
+                                    child: Text(
+                                        isFirstLoad
+                                            ? "Enter Location/Address in search field above"
+                                            : isGeoCoderError
+                                                ? geoCoderMessage
+                                                : "Loading...",
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                            fontSize: 25,
+                                            color: Colors.black,
+                                            fontStyle: FontStyle.italic)))),
                       ),
                     ],
                   ))))
@@ -223,6 +227,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
             ],
             title: Center(
                 child: Text("Empty Location Field!",
+                    textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 25, color: Colors.red))),
           );
         });
@@ -236,7 +241,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
           flex: 3,
           child: Text(label,
               style: TextStyle(
-                  fontSize: 20,
+                  fontSize: 17,
                   color: Colors.black,
                   fontStyle: FontStyle.italic)),
         ),
@@ -244,7 +249,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
           flex: 4,
           child: Text(value,
               style: TextStyle(
-                  fontSize: 20,
+                  fontSize: 17,
                   color: Colors.black,
                   fontStyle: FontStyle.italic)),
         ),
@@ -257,11 +262,18 @@ class _WeatherScreenState extends State<WeatherScreen> {
     HttpHelper helper = HttpHelper();
     result = await helper.getWeather(coordinates);
     // print("result: ${result.name}");
-    selected = true;
-    isFirstLoad = false;
-    state = coordinates["state"];
-    street = coordinates["street"];
-    zip = coordinates["zip"];
-    setState(() {});
+    // playSound("assets/guess-what.wav");
+    playSound("assets/you-got-it.wav");
+    Future.delayed(
+        //equivalent of setTimeout to let sound play
+        const Duration(milliseconds: 250),
+        () => {
+              selected = true,
+              isFirstLoad = false,
+              state = coordinates["state"],
+              street = coordinates["street"],
+              zip = coordinates["zip"],
+              setState(() {})
+            });
   }
 }
