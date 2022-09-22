@@ -5,6 +5,9 @@
 ## see it on Google Play Store:
 * https://play.google.com/store/apps/details?id=com.awesome.w_nik_app
 
+## see it on Youtube:
+* https://www.youtube.com/watch?v=n_HHXhYUYKo
+
 ### to make API calls to retrieve the weather info, the app needs API KEY from `https://openweathermap.org/`, and it needs to be placed into: `lib/helpers/secrets.dart`
 
 ### to launch the project: `flutter run`, to run in development mode
